@@ -1,7 +1,28 @@
 spring:
   datasource:
-    name: test  #????
-    url: jdbc:mysql://localhost:8080/test #url
-    username: root  #???
-    password: 123456  #??
+    name: test  #数据库名
+    url: jdbc:mysql://localhost:3306/user?useUnicode=true&characterEncoding=utf-8&useSSL=false #url
+    username: root  #账号
+    password: 123456  #密码
     driver-class-name: com.mysql.cj.jdbc.Driver  #???????  com.mysql.jdbc.Driver
+    application:
+      name: eureka-server
+mybatis:
+      mapper-locations: classpath:mapper/*.xml  #??????
+      type-aliases-package: com.example.warehousemanagementsystem.bean
+
+server:
+  port: 8080
+
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    register-with-eureka: true #可以不往eureka-server注册
+    fetch-registry: false #应用是否去拉取服务列表到本地
+    service-url:
+     defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka  #配置Eureka Server的服务URL
+
+
+
+
